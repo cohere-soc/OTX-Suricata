@@ -42,7 +42,7 @@ class SuricataClient(object):
                         type_ = indicator["type"]
                         if type_ == IndicatorTypes.FILE_HASH_MD5.name:
                             md5_list.append(indicator["indicator"])
-                        if type_ in [IndicatorTypes.IPv4.name, IndicatorTypes.IPv6.name]:
+                        if type_ in [IndicatorTypes.IPv4.name]:
                             ip_list.append(indicator["indicator"])
 
                     if len(md5_list) > 0 and generate_md5_rules:
@@ -57,7 +57,7 @@ class SuricataClient(object):
                     self.write_core_iprep_files()
                     sys.stdout.write(
                         "Wrote related iprep rules to {}\n".format('otx_iprep.rules'))
-                    sys.stdout.write("Wrote {0} IPv4 & IPv6 to {1}\n".format(str(ip_count), rep_file.name))
+                    sys.stdout.write("Wrote {0} IPv4 addresses to {1}\n".format(str(ip_count), rep_file.name))
                     sys.stdout.write("========================================\n")
                     sys.stdout.write(
                         "To leverage generated files, enable the suricata iprep feature in suricata.yaml\n")
