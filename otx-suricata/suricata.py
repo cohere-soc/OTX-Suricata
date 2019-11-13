@@ -95,7 +95,7 @@ class SuricataClient(object):
                     sys.stdout.write("==========  End YAML Snippet  ==========\n")
 
     def add_file_rule(self, rule_file=None, md5_file=None, pulse=None, pulse_id=None):
-        rule_file.write(SuricataClient.file_rule_template.format(name=self.clean(pulse['name']),
+        rule_file.write(SuricataClient.file_rule_template.format(name=self.clean(pulse['name']).replace(';', ''),
                                                                  pulse_md5_file=md5_file,
                                                                  pulse_id=pulse_id,
                                                                  random=randint(1000, 9999)))
